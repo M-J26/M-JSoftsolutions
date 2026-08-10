@@ -1,0 +1,18 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#08111F"/>
+  <path d="M80 120C80 97.9086 97.9086 80 120 80H1080C1102.09 80 1120 97.9086 1120 120V510C1120 532.091 1102.09 550 1080 550H120C97.9086 550 80 532.091 80 510V120Z" fill="#0F1B2F"/>
+  <path d="M120 146H1080" stroke="#26364F" stroke-width="2"/>
+  <circle cx="132" cy="114" r="8" fill="#16D6D9"/>
+  <circle cx="160" cy="114" r="8" fill="#10B981"/>
+  <circle cx="188" cy="114" r="8" fill="#F59E0B"/>
+  <rect x="132" y="190" width="290" height="220" rx="16" fill="#13243B"/>
+  <rect x="458" y="190" width="610" height="82" rx="16" fill="#122138"/>
+  <rect x="458" y="300" width="292" height="110" rx="16" fill="#122138"/>
+  <rect x="776" y="300" width="292" height="110" rx="16" fill="#122138"/>
+  <path d="M166 350C210 276 276 306 322 250C350 216 378 226 398 206" stroke="#16D6D9" stroke-width="8" stroke-linecap="round"/>
+  <rect x="490" y="220" width="330" height="18" rx="9" fill="#16D6D9"/>
+  <rect x="490" y="334" width="180" height="18" rx="9" fill="#10B981"/>
+  <rect x="806" y="334" width="200" height="18" rx="9" fill="#2563EB"/>
+  <text x="132" y="480" fill="#EEF6FF" font-family="Arial, sans-serif" font-size="54" font-weight="700">M&amp;J SoftSolutions</text>
+  <text x="132" y="522" fill="#9FB6D8" font-family="Arial, sans-serif" font-size="26">Soluciones Digitales Empresariales</text>
+</svg>

@@ -1,0 +1,173 @@
+<main class="min-h-screen bg-slate-950 text-white">
+  <section class="mx-auto grid min-h-screen max-w-7xl gap-8 px-5 py-8 lg:grid-cols-[280px_1fr] lg:px-8">
+    <aside class="rounded-lg border border-white/10 bg-white/5 p-5 backdrop-blur">
+      <a class="flex items-center gap-3 font900" href="/" aria-label="Volver a M&J SoftSolutions">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-cyanova text-sm font-black text-midnight">M&J</span>
+        <span>SoftSolutions CRM</span>
+      </a>
+      <nav class="mt-8 grid gap-2 text-sm text-slate-300" aria-label="CRM interno">
+        <a class="nav-item active" href="#dashboard">
+          <svg lucideLayoutDashboard size="18"></svg>
+          Dashboard
+        </a>
+        <a class="nav-item" href="#prospectos">
+          <svg lucideUsers size="18"></svg>
+          Prospectos
+        </a>
+        <a class="nav-item" href="#pipeline">
+          <svg lucideKanban size="18"></svg>
+          Pipeline
+        </a>
+        <a class="nav-item" href="#cotizaciones">
+          <svg lucideCircleDollarSign size="18"></svg>
+          Cotizaciones
+        </a>
+      </nav>
+      @if (auth()) {
+        <button class="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 px-4 py-3 text-sm font800 text-slate-200 transition hover:bg-white/10" type="button" (click)="logout()">
+          <svg lucideLogOut size="17"></svg>
+          Cerrar sesión
+        </button>
+      }
+    </aside>
+
+    @if (!auth()) {
+      <section class="grid place-items-center">
+        <div class="w-full max-w-md rounded-lg border border-white/10 bg-white p-6 text-midnight shadow-2xl">
+          <div class="flex items-center gap-3">
+            <span class="grid h-12 w-12 place-items-center rounded-lg bg-midnight text-white">
+              <svg lucideLockKeyhole size="24"></svg>
+            </span>
+            <div>
+              <h1 class="text-2xl font-black">Acceso CRM interno</h1>
+              <p class="text-sm text-slate-600">JWT, roles y refresh token en backend .NET.</p>
+            </div>
+          </div>
+          <form class="mt-8 grid gap-4" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+            <label class="grid gap-2 text-sm font800">
+              Correo
+              <input class="field" formControlName="email" autocomplete="email" />
+            </label>
+            <label class="grid gap-2 text-sm font800">
+              Contraseña
+              <input class="field" formControlName="password" type="password" autocomplete="current-password" />
+            </label>
+            <button class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-midnight px-5 py-3 font900 text-white transition hover:bg-azure" type="submit">
+              <svg lucideSend size="18"></svg>
+              Ingresar
+            </button>
+            @if (loginState() === 'error') {
+              <p class="rounded-lg bg-red-50 p-3 text-sm font800 text-red-700">Revisa las credenciales.</p>
+            }
+          </form>
+        </div>
+      </section>
+    } @else {
+      <section class="grid gap-6">
+        <header class="flex flex-col justify-between gap-4 rounded-lg border border-white/10 bg-white/5 p-6 backdrop-blur md:flex-row md:items-center">
+          <div>
+            <p class="text-sm font800 uppercase tracking-[0.18em] text-cyan-200">Administrador</p>
+            <h1 class="mt-2 text-3xl font-black">Dashboard comercial</h1>
+            <p class="mt-2 text-slate-300">Prospectos, clientes, cotizaciones, seguimiento y pipeline.</p>
+          </div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-emeraldx/15 px-4 py-2 text-sm font800 text-emerald-100">
+            <svg lucideShieldCheck size="17"></svg>
+            Rol: {{ auth()?.role }}
+          </div>
+        </header>
+
+        @if (loginState() === 'demo') {
+          <p class="rounded-lg border border-amber-300/30 bg-amber-300/10 p-4 text-sm font800 text-amber-100">
+            La API no respondió, mostrando datos demo del CRM mientras el backend se inicia.
+          </p>
+        }
+
+        <section id="dashboard" class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="metric-card">
+            <svg lucideUsers class="text-cyanova" size="24"></svg>
+            <span>Prospectos activos</span>
+            <strong>{{ kpis().activeProspects }}</strong>
+          </article>
+          <article class="metric-card">
+            <svg lucideCircleDollarSign class="text-emeraldx" size="24"></svg>
+            <span>Pipeline calificado</span>
+            <strong>{{ qualifiedValue() }}</strong>
+          </article>
+          <article class="metric-card">
+            <svg lucideTrendingUp class="text-signal" size="24"></svg>
+            <span>Conversión</span>
+            <strong>{{ kpis().conversionRate }}%</strong>
+          </article>
+          <article class="metric-card">
+            <svg lucideCircleDollarSign class="text-azure" size="24"></svg>
+            <span>Ticket promedio</span>
+            <strong>{{ averageTicket() }}</strong>
+          </article>
+        </section>
+
+        <section class="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+          <article id="prospectos" class="rounded-lg border border-white/10 bg-white p-5 text-midnight shadow-2xl">
+            <div class="flex items-center justify-between gap-4">
+              <h2 class="text-xl font-black">Prospectos recientes</h2>
+              <span class="rounded-full bg-cyanova/10 px-3 py-1 text-sm font800 text-azure">{{ prospects().length }} registros</span>
+            </div>
+            <div class="mt-5 overflow-x-auto">
+              <table class="w-full min-w-[720px] text-left text-sm">
+                <thead class="text-slate-500">
+                  <tr>
+                    <th class="py-3">Cliente</th>
+                    <th>Proyecto</th>
+                    <th>Presupuesto</th>
+                    <th>Estado</th>
+                    <th>Estimación</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  @for (prospect of prospects(); track prospect.id) {
+                    <tr>
+                      <td class="py-4">
+                        <strong class="block text-midnight">{{ prospect.name }}</strong>
+                        <span class="text-slate-500">{{ prospect.company }}</span>
+                      </td>
+                      <td>{{ prospect.projectType }}</td>
+                      <td>{{ prospect.budgetRange }}</td>
+                      <td><span class="rounded-full bg-slate-100 px-3 py-1 font800">{{ prospect.status }}</span></td>
+                      <td class="font900 text-emerald-700">{{ prospect.estimatedInvestment }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article id="pipeline" class="rounded-lg border border-white/10 bg-white/5 p-5 backdrop-blur">
+            <h2 class="text-xl font-black">Pipeline comercial</h2>
+            <div class="mt-5 grid gap-4">
+              @for (stage of pipeline(); track stage.stage) {
+                <div class="rounded-lg border border-white/10 bg-white/10 p-4">
+                  <div class="flex items-center justify-between">
+                    <strong>{{ stage.stage }}</strong>
+                    <span class="rounded-full bg-cyanova px-3 py-1 text-xs font900 text-midnight">{{ stage.total }}</span>
+                  </div>
+                  <div class="mt-4 h-2 rounded-full bg-white/10">
+                    <div class="h-2 rounded-full bg-cyanova" [style.width.%]="stage.total * 28 + 12"></div>
+                  </div>
+                </div>
+              }
+            </div>
+          </article>
+        </section>
+
+        <section id="cotizaciones" class="grid gap-4 lg:grid-cols-3">
+          @for (quote of ['CRM empresarial', 'ERP modular', 'Agente IA']; track quote) {
+            <article class="rounded-lg border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <span class="text-sm font800 text-cyan-200">Cotización</span>
+              <h3 class="mt-2 text-xl font-black">{{ quote }}</h3>
+              <p class="mt-3 text-slate-300">Alcance, módulos, presupuesto, responsable comercial y siguiente acción.</p>
+            </article>
+          }
+        </section>
+      </section>
+    }
+  </section>
+</main>
