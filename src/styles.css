@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --mj-ink: #08111f;
+  --mj-text: #1f2937;
+  --mj-muted: #667085;
+  --mj-cyan: #16d6d9;
+  --mj-blue: #2563eb;
+  --mj-orange: #f97316;
+  --mj-green: #10b981;
+  --mj-line: rgba(15, 23, 42, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(115deg, rgba(22, 214, 217, 0.12), transparent 35%, rgba(249, 115, 22, 0.11)),
+    linear-gradient(180deg, #07111f 0%, #edf7ff 31%, #fff3e8 72%, #e8f8ff 100%);
+  color: var(--mj-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  outline-color: var(--mj-cyan);
+}
+
+::selection {
+  background: rgba(22, 214, 217, 0.24);
+  color: var(--mj-ink);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  border-radius: 999px;
+  background: #08111f;
+  color: white;
+  padding: 0.75rem 1rem;
+  transition: top 180ms ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

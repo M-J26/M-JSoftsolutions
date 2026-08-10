@@ -1,0 +1,68 @@
+:host {
+  display: block;
+}
+
+.font800 {
+  font-weight: 800;
+}
+
+.font900 {
+  font-weight: 900;
+}
+
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-radius: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.metric-card {
+  min-height: 10rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.25rem;
+  backdrop-filter: blur(18px);
+}
+
+.metric-card span {
+  display: block;
+  margin-top: 1rem;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.field {
+  min-height: 3rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #f8fafc;
+  padding: 0.8rem 1rem;
+  color: #08111f;
+  font-weight: 650;
+}
+
+.field:focus {
+  border-color: #16d6d9;
+  box-shadow: 0 0 0 4px rgba(22, 214, 217, 0.18);
+}
