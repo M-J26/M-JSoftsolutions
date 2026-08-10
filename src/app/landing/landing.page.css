@@ -406,10 +406,9 @@
 
 .floating-dock {
   position: fixed;
-  right: 1.25rem;
+  right: 1.1rem;
   bottom: 5.25rem;
   z-index: 50;
-  display: grid;
   gap: 0.65rem;
   padding: 0.55rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -581,9 +580,8 @@
   }
 
   .floating-dock {
-    left: 50%;
+    left: 80%;
     right: auto;
-    bottom: 1rem;
     grid-auto-flow: column;
     grid-template-columns: repeat(6, 1fr);
     border-radius: 999px;
