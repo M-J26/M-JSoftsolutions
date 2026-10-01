@@ -594,13 +594,23 @@
         <a href="#cotizador">Cotizador</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <a
-        class="nav-cta inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font700 shadow-glow transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
-        href="#contacto"
-      >
-        <svg lucideCalendarCheck size="18"></svg>
-        Agendar
-      </a>
+      <div class="flex items-center gap-3">
+        <a
+          class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-sm font800 text-white transition hover:-translate-y-0.5 hover:bg-white/10"
+          routerLink="/admin"
+          aria-label="Acceso al panel administrativo"
+        >
+          <svg lucideUserRound size="16"></svg>
+          Usuario
+        </a>
+        <a
+          class="nav-cta inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font700 shadow-glow transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+          href="#contacto"
+        >
+          <svg lucideCalendarCheck size="18"></svg>
+          Agendar
+        </a>
+      </div>
     </header>
 
     <div class="relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] max-w-7xl items-center px-5 pb-20 pt-8 lg:px-8">

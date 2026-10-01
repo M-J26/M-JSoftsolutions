@@ -358,6 +358,7 @@ import {
   signal
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import {
   LucideArrowRight,
   LucideBadgeCheck,
@@ -377,6 +378,7 @@ import {
   LucideSend,
   LucideShieldCheck,
   LucideSparkles,
+  LucideUserRound,
   LucideXCircle
 } from '@lucide/angular';
 import { ApiService, ProjectKind } from '../core/api.service';
@@ -427,6 +429,7 @@ interface EstimateBreakdownItem {
   selector: 'app-landing-page',
   imports: [
     ReactiveFormsModule,
+    RouterLink,
     LucideArrowRight,
     LucideBadgeCheck,
     LucideBot,
@@ -445,6 +448,7 @@ interface EstimateBreakdownItem {
     LucideSend,
     LucideShieldCheck,
     LucideSparkles,
+    LucideUserRound,
     LucideXCircle
   ],
   templateUrl: './landing.page.html',

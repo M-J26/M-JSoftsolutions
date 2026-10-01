@@ -10,6 +10,15 @@ export const routes: Routes = [
     loadComponent: () => import('./admin/admin.page').then((m) => m.AdminPage)
   },
   {
+    path: 'admin',
+    loadComponent: () => import('./admin/admin.page').then((m) => m.AdminPage)
+  },
+  {
+    path: 'login',
+    redirectTo: 'admin',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: ''
   }
