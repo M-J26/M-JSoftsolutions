@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, PLATFORM_ID, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import {
   LucideCircleDollarSign,
   LucideKanban,
@@ -20,6 +21,7 @@ type LoginState = 'idle' | 'loading' | 'ready' | 'demo' | 'error';
   selector: 'app-admin-page',
   imports: [
     ReactiveFormsModule,
+    RouterLink,
     LucideCircleDollarSign,
     LucideKanban,
     LucideLayoutDashboard,
@@ -40,8 +42,8 @@ export class AdminPage {
   private readonly platformId = inject(PLATFORM_ID);
 
   readonly loginForm = this.fb.nonNullable.group({
-    email: ['admin@mjsoftsolutions.com', [Validators.required, Validators.email]],
-    password: ['Admin123*', [Validators.required, Validators.minLength(8)]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]]
   });
 
   readonly auth = signal<AuthResponse | null>(null);

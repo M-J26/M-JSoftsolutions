@@ -463,9 +463,6 @@
           @if (submissionState() === 'success') {
             <p class="rounded-lg bg-emerald-50 p-4 text-sm font800 text-emerald-700">Solicitud registrada. Te contactaremos pronto.</p>
           }
-          @if (submissionState() === 'offline') {
-            <p class="rounded-lg bg-amber-50 p-4 text-sm font800 text-amber-800">La API no respondió en este momento; el formulario ya está preparado para enviarse cuando el backend esté activo.</p>
-          }
           @if (submissionState() === 'error') {
             <p class="rounded-lg bg-red-50 p-4 text-sm font800 text-red-700">Revisa los campos marcados antes de enviar.</p>
           }
@@ -1098,9 +1095,6 @@
           </button>
           @if (submissionState() === 'success') {
             <p class="rounded-lg bg-emerald-50 p-4 text-sm font800 text-emerald-700">Solicitud registrada. Te contactaremos pronto.</p>
-          }
-          @if (submissionState() === 'offline') {
-            <p class="rounded-lg bg-amber-50 p-4 text-sm font800 text-amber-800">La API no respondió en este momento; el formulario ya está preparado para enviarse cuando el backend esté activo.</p>
           }
           @if (submissionState() === 'error') {
             <p class="rounded-lg bg-red-50 p-4 text-sm font800 text-red-700">Revisa los campos marcados antes de enviar.</p>

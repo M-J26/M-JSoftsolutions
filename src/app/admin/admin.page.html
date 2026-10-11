@@ -1,7 +1,7 @@
 <main class="min-h-screen bg-slate-950 text-white">
   <section class="mx-auto grid min-h-screen max-w-7xl gap-8 px-5 py-8 lg:grid-cols-[280px_1fr] lg:px-8">
     <aside class="rounded-lg border border-white/10 bg-white/5 p-5 backdrop-blur">
-      <a class="flex items-center gap-3 font900" href="/" aria-label="Volver a M&J SoftSolutions">
+      <a class="flex items-center gap-3 font900" routerLink="/" aria-label="Volver a M&J SoftSolutions">
         <span class="grid h-11 w-11 place-items-center rounded-xl bg-cyanova text-sm font-black text-midnight">M&J</span>
         <span>SoftSolutions CRM</span>
       </a>
@@ -56,7 +56,7 @@
               <svg lucideSend size="18"></svg>
               Ingresar
             </button>
-            <a class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font800 text-midnight transition hover:bg-slate-100" href="/">
+            <a class="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font800 text-midnight transition hover:bg-slate-100" routerLink="/">
               Volver al sitio
             </a>
             @if (loginState() === 'error') {

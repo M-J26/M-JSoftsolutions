@@ -889,6 +889,12 @@ export class LandingPage implements AfterViewInit {
     }
 
     const form = this.leadForm.getRawValue();
+    const payload = {
+      ...form,
+      projectType: this.selectedProject(),
+      estimatedInvestment: this.estimateLabel()
+    };
+
     this.submissionState.set('loading');
 
     /*
@@ -896,14 +902,13 @@ export class LandingPage implements AfterViewInit {
      * No se agrega selectedFeatures aquí para no romper el DTO existente.
      */
     this.api
-      .createLead({
-        ...form,
-        projectType: this.selectedProject(),
-        estimatedInvestment: this.estimateLabel()
-      })
+      .createLead(payload)
       .subscribe({
         next: () => this.submissionState.set('success'),
-        error: () => this.submissionState.set('offline')
+        error: () => {
+          this.api.triggerLeadEmailFallback(payload);
+          this.submissionState.set('success');
+        }
       });
   }
 
